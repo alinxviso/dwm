@@ -43,8 +43,8 @@
 #endif /* XINERAMA */
 #include <X11/Xft/Xft.h>
 
-#include "drw.h"
-#include "util.h"
+#include "drw.h.c"
+#include "util.h.c"
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
