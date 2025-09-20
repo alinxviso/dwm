@@ -1,0 +1,1 @@
+dwm-systray-6.2.diff
