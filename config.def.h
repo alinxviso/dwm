@@ -3,6 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const char panel[][20]       = { "xfce4-panel", "Xfce4-panel" }; /* name & cls of panel win */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
@@ -48,6 +49,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ panel[1],   NULL,       NULL,       (1 << 9) - 1, 1,           -1 },
 };
 
 /* layout(s) */

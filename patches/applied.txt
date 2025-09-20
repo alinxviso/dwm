@@ -9,3 +9,4 @@ dwm-decorhints-6.2.diff                                     dwm.c.rej
 dwm-focusonnetactive-6.2.diff
 dwm-rainbowtags-6.2.diff                                    dwm.c.rej
 dwm-winicon-6.2-v2.1.diff                                   dwm.c.rej
+dwm-xfce4-panel-20220306-d39e2f3.diff                       config.def.h.rej
