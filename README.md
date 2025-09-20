@@ -8,6 +8,8 @@ all patches applied, and their order, can be found in the patches/applied.txt fi
 
 old readme can be found at README
 
+all patches will use the base -6.2.diff version if available
+
 default branch is 6.2
 
 current branch is 6.2
