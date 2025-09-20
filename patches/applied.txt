@@ -1,5 +1,6 @@
-dwm-systray-6.2.diff		6.2
-dwm-ewmhtags-6.2.diff		6.2, dwm.c.rej
+dwm-systray-6.2.diff		
+dwm-ewmhtags-6.2.diff                                       dwm.c.rej
 dwm-bar-height-6.2.diff
-dwm-tiledmove-20231210-b731.diff
-dwm-actualfullscreen-20211013-cb3f58a.diff
+dwm-tiledmove-20231210-b731.diff                            6.2
+dwm-actualfullscreen-20211013-cb3f58a.diff                  6.2
+dwm-scratchpad-6.2.diff                                     dwm.c.rej
