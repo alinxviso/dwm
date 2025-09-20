@@ -17,3 +17,5 @@ all patches applied, in order, can be found in the patches/applied.txt file
 all patches will use the base -6.2.diff version if available
 
 patches that aren't added for special reasons but still function can found in patches/special
+
+patches that are neat but i don't really want are in patches/optional
