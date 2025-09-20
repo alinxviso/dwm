@@ -1,0 +1,6 @@
+# vim swap
+*.swp
+
+# patch remnants
+*.rej
+*.orig
