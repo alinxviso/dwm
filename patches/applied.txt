@@ -1,3 +1,4 @@
 dwm-systray-6.2.diff		6.2
 dwm-ewmhtags-6.2.diff		6.2, dwm.c.rej
 dwm-bar-height-6.2.diff
+dwm-tiledmove-20231210-b731.diff
