@@ -1,0 +1,11 @@
+# vim swap
+*.swp
+
+# patch remnants
+*.rej
+*.orig
+
+# binaries
+dwm
+dwm.o
+util.o
