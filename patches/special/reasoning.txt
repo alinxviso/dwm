@@ -1,0 +1,1 @@
+dwm-torus-20240901-5687f46.diff			requires a few variables to be omitted/moved to a different spot than the patch says
