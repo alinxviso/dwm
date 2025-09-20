@@ -10,4 +10,4 @@ old readme can be found at README
 
 default branch is 6.2
 
-current branch is 6.2
+current branch is 6.5
