@@ -34,8 +34,8 @@ index 8fd1ca4..77e321a 100644
  #include <X11/Xft/Xft.h>
 +#include <Imlib2.h>
  
- #include "drw.h"
- #include "util.h"
+ #include "drw.h.c"
+ #include "util.h.c"
 @@ -71,6 +72,7 @@ drw_create(Display *dpy, int screen, Window root, unsigned int w, unsigned int h
  	drw->w = w;
  	drw->h = h;
@@ -146,10 +146,10 @@ index 8fd1ca4..77e321a 100644
  void
  drw_map(Drw *drw, Window win, int x, int y, unsigned int w, unsigned int h)
  {
-diff --git a/drw.h b/drw.h
+diff --git a/drw.h.c b/drw.h.c
 index 4bcd5ad..71aefa2 100644
---- a/drw.h
-+++ b/drw.h
+--- a/drw.h.c
++++ b/drw.h.c
 @@ -21,6 +21,7 @@ typedef struct {
  	int screen;
  	Window root;
