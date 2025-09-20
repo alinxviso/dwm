@@ -7,3 +7,4 @@ dwm-scratchpad-6.2.diff                                     dwm.c.rej
 dwm-autostart-20210120-cb3f58a.diff                         6.2, dwm.c.rej
 dwm-decorhints-6.2.diff                                     dwm.c.rej
 dwm-focusonnetactive-6.2.diff
+dwm-rainbowtags-6.2.diff                                    dwm.c.rej
