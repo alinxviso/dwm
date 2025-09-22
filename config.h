@@ -14,8 +14,8 @@ static const int topbar             = 0;        /* 0 means bottom bar */
 #define ICONSIZE 16                             /* icon size */
 #define ICONSPACING 5                           /* space between icon and title */
 static const int user_bh            = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Liberation Mono:size=10" };
+static const char dmenufont[]       = "Liberation Mono:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -23,8 +23,8 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_gray1,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, "#000000" },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_gray2  },
 };
 
 /* tagging */
@@ -41,6 +41,7 @@ static const char *tagsel[][2] = {
 	{ "#eeeeee", "#550000" },
 	{ "#eeeeee", "#550000" },
 };
+
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -86,6 +87,8 @@ static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "1
 static const char *powermenucmd[]  = { "powermenu.sh", NULL };  // custom script from other repo
 static const char *alttabcmd[]     = { "dmenu-appswitcher.sh", NULL }; // same
 
+
+// i love dvorak
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ Mod1Mask|ControlMask,         XK_Delete,     spawn,          {.v = powermenucmd} },
