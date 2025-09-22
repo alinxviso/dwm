@@ -3,6 +3,11 @@ From: mihirlad55 <mihirlad55@gmail.com>
 Date: Fri, 6 Nov 2020 17:13:42 +0000
 Subject: [PATCH] Add IPC support through a unix socket
 
+Modified: Mon, 22 Sept 2025 10:20:14 +0700
+From: ant <marxguey@proton.me>
+idk how to modify patches
+modified to change all header files to c files to allow for optimization
+
 This patch currently supports the following requests:
 * Run custom commands with arguments (similar to key bind functions)
 * Get monitor properties
@@ -30,26 +35,26 @@ messages, documentation can be found at
 https://github.com/mihirlad55/dwm-ipc
 ---
  IPCClient.c  |   66 +++
- IPCClient.h  |   61 +++
+ IPCClient.h.c  |   61 +++
  Makefile     |   10 +-
  config.def.h |   18 +
  config.mk    |    8 +-
  dwm-msg.c    |  548 +++++++++++++++++++++++
  dwm.c        |  150 ++++++-
  ipc.c        | 1202 ++++++++++++++++++++++++++++++++++++++++++++++++++
- ipc.h        |  320 ++++++++++++++
+ ipc.h.c        |  320 ++++++++++++++
  util.c       |  135 ++++++
- util.h       |   10 +
+ util.h.c       |   10 +
  yajl_dumps.c |  351 +++++++++++++++
- yajl_dumps.h |   65 +++
+ yajl_dumps.h.c |   65 +++
  13 files changed, 2931 insertions(+), 13 deletions(-)
  create mode 100644 IPCClient.c
- create mode 100644 IPCClient.h
+ create mode 100644 IPCClient.h.c
  create mode 100644 dwm-msg.c
  create mode 100644 ipc.c
- create mode 100644 ipc.h
+ create mode 100644 ipc.h.c
  create mode 100644 yajl_dumps.c
- create mode 100644 yajl_dumps.h
+ create mode 100644 yajl_dumps.h.c
 
 diff --git a/IPCClient.c b/IPCClient.c
 new file mode 100644
@@ -57,12 +62,12 @@ index 0000000..0d3eefb
 --- /dev/null
 +++ b/IPCClient.c
 @@ -0,0 +1,66 @@
-+#include "IPCClient.h"
++#include "IPCClient.h.c"
 +
 +#include <string.h>
 +#include <sys/epoll.h>
 +
-+#include "util.h"
++#include "util.h.c"
 +
 +IPCClient *
 +ipc_client_new(int fd)
@@ -123,11 +128,11 @@ index 0000000..0d3eefb
 +
 +  return NULL;
 +}
-diff --git a/IPCClient.h b/IPCClient.h
+diff --git a/IPCClient.h.c b/IPCClient.h.c
 new file mode 100644
 index 0000000..307dfba
 --- /dev/null
-+++ b/IPCClient.h
++++ b/IPCClient.h.c
 @@ -0,0 +1,61 @@
 +#ifndef IPC_CLIENT_H_
 +#define IPC_CLIENT_H_
@@ -934,7 +939,7 @@ index 9fd0286..c90c61a 100644
 +static Monitor *mons, *selmon, *lastselmon;
  static Window root, wmcheckwin;
  
-+#include "ipc.h"
++#include "ipc.h.c"
 +
  /* configuration, allows nested code to access above variables */
  #include "config.h"
@@ -1115,7 +1120,7 @@ index 0000000..c404791
 --- /dev/null
 +++ b/ipc.c
 @@ -0,0 +1,1202 @@
-+#include "ipc.h"
++#include "ipc.h.c"
 +
 +#include <errno.h>
 +#include <fcntl.h>
@@ -1130,8 +1135,8 @@ index 0000000..c404791
 +#include <yajl/yajl_gen.h>
 +#include <yajl/yajl_tree.h>
 +
-+#include "util.h"
-+#include "yajl_dumps.h"
++#include "util.h.c"
++#include "yajl_dumps.h.c"
 +
 +static struct sockaddr_un sockaddr;
 +static struct epoll_event sock_epoll_event;
@@ -2317,11 +2322,11 @@ index 0000000..c404791
 +
 +  return new_fd;
 +}
-diff --git a/ipc.h b/ipc.h
+diff --git a/ipc.h.c b/ipc.h.c
 new file mode 100644
 index 0000000..e3b5bba
 --- /dev/null
-+++ b/ipc.h
++++ b/ipc.h.c
 @@ -0,0 +1,320 @@
 +#ifndef IPC_H_
 +#define IPC_H_
@@ -2330,7 +2335,7 @@ index 0000000..e3b5bba
 +#include <sys/epoll.h>
 +#include <yajl/yajl_gen.h>
 +
-+#include "IPCClient.h"
++#include "IPCClient.h.c"
 +
 +// clang-format off
 +#define IPC_MAGIC "DWM-IPC"
@@ -2654,7 +2659,7 @@ index fe044fc..dca4794 100644
 +#include <errno.h>
 +#include <sys/stat.h>
  
- #include "util.h"
+ #include "util.h.c"
  
 @@ -33,3 +35,136 @@ die(const char *fmt, ...) {
  
@@ -2793,10 +2798,10 @@ index fe044fc..dca4794 100644
 +
 +  return 0;
 +}
-diff --git a/util.h b/util.h
+diff --git a/util.h.c b/util.h.c
 index f633b51..73a238e 100644
---- a/util.h
-+++ b/util.h
+--- a/util.h.c
++++ b/util.h.c
 @@ -4,5 +4,15 @@
  #define MIN(A, B)               ((A) < (B) ? (A) : (B))
  #define BETWEEN(X, A, B)        ((A) <= (X) && (X) <= (B))
@@ -2819,7 +2824,7 @@ index 0000000..8bf9688
 --- /dev/null
 +++ b/yajl_dumps.c
 @@ -0,0 +1,351 @@
-+#include "yajl_dumps.h"
++#include "yajl_dumps.h.c"
 +
 +#include <stdint.h>
 +
@@ -3170,11 +3175,11 @@ index 0000000..8bf9688
 +
 +  return 0;
 +}
-diff --git a/yajl_dumps.h b/yajl_dumps.h
+diff --git a/yajl_dumps.h.c b/yajl_dumps.h.c
 new file mode 100644
 index 0000000..ee9948e
 --- /dev/null
-+++ b/yajl_dumps.h
++++ b/yajl_dumps.h.c
 @@ -0,0 +1,65 @@
 +#ifndef YAJL_DUMPS_H_
 +#define YAJL_DUMPS_H_
