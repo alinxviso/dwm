@@ -19,3 +19,10 @@ all patches will use the base -6.2.diff version if available
 patches that aren't added for special reasons but still function can found in patches/special
 
 patches that are neat but i don't really want are in patches/optional
+
+## dependencies
+
+the winicon patch needs imlib2, which is usually packaged on most distros
+
+### other
+look [here](https://github.com/mihirlad55/dwm-ipc/wiki/) for how to use the dwm-ipc, which is very useful for external bars
