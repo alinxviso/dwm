@@ -1,5 +1,5 @@
 # vim swap
-*.swp
+.*.swp
 
 # patch remnants
 *.rej
@@ -8,6 +8,4 @@
 # binaries
 dwm
 dwm-msg
-dwm.o
-drw.o
-util.o
+*.o
