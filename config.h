@@ -85,7 +85,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-b", "-i", "-m", dmenumon, "-fn"
 static const char *termcmd[]  = { "alacritty", "msg", "create-window", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
-static const char *powermenucmd[]  = { "powermenu.sh", NULL };  // custom script from other repo
+static const char *powermenucmd[]  = { "powermenu.bash", NULL };  // custom script from other repo
 static const char *alttabcmd[]     = { "dmenu-appswitcher.sh", NULL }; // same
 
 
