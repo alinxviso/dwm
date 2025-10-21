@@ -7,6 +7,7 @@ VERSION = 6.2
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
+# Linux
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
@@ -16,13 +17,13 @@ XINERAMAFLAGS = -DXINERAMA
 
 # freetype
 FREETYPELIBS = -lfontconfig -lXft
-FREETYPEINC = /usr/include/freetype2
+FREETYPEINC = /usr/local/include/freetype2
 # OpenBSD (uncomment)
 #FREETYPEINC = ${X11INC}/freetype2
 
 # yajl
 YAJLLIBS = -lyajl
-YAJLINC = /usr/include/yajl
+YAJLINC = /usr/local/include/yajl
 
 # includes and libs
 INCS = -I${X11INC} -I${FREETYPEINC} -I${YAJLINC}
@@ -33,8 +34,8 @@ MAKEFLAGS="-j8 -l8"
 # flags
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
 #CFLAGS   = -g -std=c99 -pedantic -Wall -O0 ${INCS} ${CPPFLAGS}
-CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${CUSTOMCFLAGS} ${INCS} ${CPPFLAGS}
-CUSTOMCFLAGS = -march=native -O3 -pipe -flto -fipa-pta
+CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations ${CUSTOMCFLAGS} ${INCS} ${CPPFLAGS}
+CUSTOMCFLAGS = -march=native -O3 -pipe -flto
 LDFLAGS  = ${LIBS}
 
 # Solaris
