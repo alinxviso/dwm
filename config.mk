@@ -17,13 +17,13 @@ XINERAMAFLAGS = -DXINERAMA
 
 # freetype
 FREETYPELIBS = -lfontconfig -lXft
-FREETYPEINC = /usr/local/include/freetype2
+FREETYPEINC = /usr/include/freetype2
 # OpenBSD (uncomment)
 #FREETYPEINC = ${X11INC}/freetype2
 
 # yajl
 YAJLLIBS = -lyajl
-YAJLINC = /usr/local/include/yajl
+YAJLINC = /usr/include/yajl
 
 # includes and libs
 INCS = -I${X11INC} -I${FREETYPEINC} -I${YAJLINC}
@@ -35,7 +35,7 @@ MAKEFLAGS="-j8 -l8"
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
 #CFLAGS   = -g -std=c99 -pedantic -Wall -O0 ${INCS} ${CPPFLAGS}
 CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations ${CUSTOMCFLAGS} ${INCS} ${CPPFLAGS}
-CUSTOMCFLAGS = -march=native -O3 -pipe -flto
+CUSTOMCFLAGS = -march=native -O2 -pipe -flto
 LDFLAGS  = ${LIBS}
 
 # Solaris
