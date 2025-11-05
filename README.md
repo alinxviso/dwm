@@ -10,11 +10,8 @@ default branch is 6.2
 
 current branch is 6.2
 
-# BSD USERS
-
-#### THIS WILL NOT COMPILE ON ANY BSD
-One of the patches depends on the epoll syscall, which is only available on linux, making it impossible to compile on anything else.
-I am currently testing to see which patch it is, but it is most likely the dwm-ipc patch
+# FREEBSD USERS
+Please use the 6.2-FreeBSD branch which does not use dwm-ipc, allowing it to compile and run
 
 ## patches
 
