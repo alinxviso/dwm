@@ -82,9 +82,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-b", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", "msg", "create-window", NULL };
+//static const char *termcmd[]  = { "alacritty", "msg", "create-window", NULL };
+static const char *termcmd[] = { "urxvtc", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
+//static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
+static const char *scratchpadcmd[] = { "urxvt", "-T", scratchpadname, "-g", "120x34", NULL  };
 static const char *powermenucmd[]  = { "powermenu.bash", NULL };  // custom script from other repo
 static const char *alttabcmd[]     = { "dmenu-appswitcher.sh", NULL }; // same
 
