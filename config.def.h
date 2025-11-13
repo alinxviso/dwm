@@ -66,6 +66,11 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
+static const Env envs[] = {
+	/* variable 	value */
+	{ "TERMINAL",	"st" },
+};
+
 /* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \

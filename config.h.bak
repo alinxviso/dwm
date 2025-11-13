@@ -52,12 +52,13 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
 	{ panel[1],   NULL,       NULL,       (1 << 9) - 1, 1,           -1 },
+	{ "io.elementary.desktop.agent-polkit", NULL, NULL, (1 << 9), 1, -1}
 };
 
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int decorhints  = 1;    /* 1 means respect decoration hints */
 
 static const Layout layouts[] = {
@@ -65,6 +66,13 @@ static const Layout layouts[] = {
 	{ ">< °>",      tile },    /* first entry is default */
 	{ "°×°",      NULL },    /* no layout function means floating behavior */
 	{ "gtfo bruh how tf",      monocle },
+};
+
+static const Env envs[] = {
+	/* variable	value */
+	{ "PMCMD",	"powermenu.bash" },
+	{ "XDG_SESSION_TYPE", "x11"},
+	{ "XDG_SESSION_DESKTOP", "dwm" },
 };
 
 /* key definitions */
@@ -81,17 +89,19 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-b", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", "msg", "create-window", NULL };
+//static const char *termcmd[]  = { "alacritty", "msg", "create-window", NULL };
+static const char *termcmd[] = { "urxvtc", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
-static const char *powermenucmd[]  = { "powermenu.sh", NULL };  // custom script from other repo
+//static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
+static const char *scratchpadcmd[] = { "urxvt", "-T", scratchpadname, "-g", "120x34", NULL  };
+//static const char *powermenucmd[]  = { "powermenu.bash", NULL };  // custom script from other repo
 static const char *alttabcmd[]     = { "dmenu-appswitcher.sh", NULL }; // same
 
 
 // i love dvorak
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ Mod1Mask|ControlMask,         XK_Delete,     spawn,          {.v = powermenucmd} },
+	{ Mod1Mask|ControlMask,         XK_Delete,     spawn,          {.v = SHCMD($PMCMD)} },
 	{ Mod1Mask,                     XK_Tab,        spawn,          {.v = alttabcmd } },
 	{ MODKEY,                       XK_e,          spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,     spawn,          {.v = termcmd } },
@@ -99,8 +109,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,          togglebar,      {0} },
 	{ MODKEY,                       XK_t,          focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_n,          focusstack,     {.i = -1 } },
-//	{ MODKEY,                       XK_i,          incnmaster,     {.i = +1 } },
-//	{ MODKEY,                       XK_d,          incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_i,          incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_d,          incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,          setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_s,          setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return,     zoom,           {0} },
@@ -108,7 +118,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_apostrophe, killclient,     {0} },
 	{ MODKEY,                       XK_j,          setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,          setlayout,      {.v = &layouts[1]} },
-//  { MODKEY,                       XK_m,          setlayout,      {.v = &layouts[2]} },
+//	{ MODKEY,                       XK_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_space,      setlayout,      {0} },
 	{ MODKEY,                       XK_space,      togglefloating, {0} },
 	{ MODKEY,                       XK_f,          togglefullscr,  {0} },

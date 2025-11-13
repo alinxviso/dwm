@@ -68,6 +68,13 @@ static const Layout layouts[] = {
 	{ "gtfo bruh how tf",      monocle },
 };
 
+static const Env envs[] = {
+	/* variable	value */
+	{ "PMCMD",	"powermenu.bash" },
+	{ "XDG_SESSION_TYPE", "x11"},
+	{ "XDG_SESSION_DESKTOP", "dwm" },
+};
+
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -87,14 +94,14 @@ static const char *termcmd[] = { "urxvtc", NULL };
 static const char scratchpadname[] = "scratchpad";
 //static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname,/* "-g", "120x34",*/ NULL };
 static const char *scratchpadcmd[] = { "urxvt", "-T", scratchpadname, "-g", "120x34", NULL  };
-static const char *powermenucmd[]  = { "powermenu.bash", NULL };  // custom script from other repo
+//static const char *powermenucmd[]  = { "powermenu.bash", NULL };  // custom script from other repo
 static const char *alttabcmd[]     = { "dmenu-appswitcher.sh", NULL }; // same
 
 
 // i love dvorak
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ Mod1Mask|ControlMask,         XK_Delete,     spawn,          {.v = powermenucmd} },
+	{ Mod1Mask|ControlMask,         XK_Delete,     spawn,          SHCMD("$PMCMD") },
 	{ Mod1Mask,                     XK_Tab,        spawn,          {.v = alttabcmd } },
 	{ MODKEY,                       XK_e,          spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,     spawn,          {.v = termcmd } },
@@ -140,7 +147,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = powermenucmd} },
+//	{ ClkStatusText,        0,              Button2,        spawn,          {.v = powermenucmd} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
